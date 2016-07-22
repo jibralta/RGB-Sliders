@@ -45,7 +45,7 @@
                                 <rect key="frame" x="141" y="426" width="38" height="30"/>
                                 <state key="normal" title="Open"/>
                                 <connections>
-                                    <segue destination="AkK-IT-EsG" kind="show" id="9f5-uy-rpQ"/>
+                                    <segue destination="AkK-IT-EsG" kind="show" identifier="openColor" id="9f5-uy-rpQ"/>
                                 </connections>
                             </button>
                         </subviews>
