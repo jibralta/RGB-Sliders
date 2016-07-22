@@ -26,6 +26,12 @@ class ViewController: UIViewController {
         colorSquare.layer.borderColor = UIColor.blackColor().CGColor
         colorSquare.layer.borderWidth = 1
         
+        // Loading from NSUserDefault - Extracts the numeric value of the colors and applies them to the sliders.
+        let defaults = NSUserDefaults.standardUserDefaults()
+        redSlider.value = defaults.floatForKey("red")
+        greenSlider.value = defaults.floatForKey("green")
+        blueSlider.value = defaults.floatForKey("blue")
+        // no need to synchronize because not storing.  Only extracting data.
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,8 +50,18 @@ class ViewController: UIViewController {
         
         // Code for updating color of just the colorSquare instead of the screen.
         colorSquare.backgroundColor = UIColor(red: red, green: green, blue: blue, alpha: 1)
+        
+        // This line below stores a reference to the shared defaults object
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        // Saving to NSUserDefault - The three slider values are then stored within the shared defaults object
+        defaults.setFloat(redSlider.value, forKey: "red")
+        defaults.setFloat(greenSlider.value, forKey: "green")
+        defaults.setFloat(blueSlider.value, forKey: "blue")
+        defaults.synchronize()
     }
     
+    // points the segue to the destination and tells the new screen what color.  Same color as square from first screen.
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "openColor") {
             let newViewController = segue.destinationViewController
