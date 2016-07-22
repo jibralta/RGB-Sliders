@@ -19,6 +19,13 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        // Loading from NSUserDefault - Extracts the numeric value of the colors and applies them to the sliders. Make sure to place this bit before updateBackgroundColor.
+        let defaults = NSUserDefaults.standardUserDefaults()
+        redSlider.value = defaults.floatForKey("red")
+        greenSlider.value = defaults.floatForKey("green")
+        blueSlider.value = defaults.floatForKey("blue")
+        // no need to synchronize because not storing.  Only extracting data.
+        
         // want background color to be grey when app first opens. (0.5 of RGB = grey not white)
         updateBackgroundColor(view)
         
@@ -26,12 +33,7 @@ class ViewController: UIViewController {
         colorSquare.layer.borderColor = UIColor.blackColor().CGColor
         colorSquare.layer.borderWidth = 1
         
-        // Loading from NSUserDefault - Extracts the numeric value of the colors and applies them to the sliders.
-        let defaults = NSUserDefaults.standardUserDefaults()
-        redSlider.value = defaults.floatForKey("red")
-        greenSlider.value = defaults.floatForKey("green")
-        blueSlider.value = defaults.floatForKey("blue")
-        // no need to synchronize because not storing.  Only extracting data.
+
     }
 
     override func didReceiveMemoryWarning() {
